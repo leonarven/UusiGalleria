@@ -4,10 +4,8 @@ UusiGalleria
 Kuvagalleria Uusikanava-yhteisön ekshibitionisteille
 
 
-Nodejs
-mysql
-expressjs
+Expressjs, mysql, consolidate, swig
 
-requirejs? joku muu?
-grunt?
-Mitä?!
+Tarvitaanko muuta?
+
+ns. MVC mallilla mennää?
