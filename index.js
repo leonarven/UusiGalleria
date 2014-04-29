@@ -7,7 +7,7 @@ app.engine('html', cons.swig);
 
 // set .html as the default extension 
 app.set('view engine', 'html');
-app.set('views', __dirname + '/views');
+app.set('views', __dirname + '/static');
 
 app.get('/', function(req, res){
   res.render('index', {
