@@ -8,6 +8,8 @@ Expressjs, mysql, consolidate, swig
 
 Tarvitaanko muuta?
 
+password-hash = md5(salt1+pw+salt2)?
+
 Database struktuuri :
 
 Users table
@@ -15,7 +17,7 @@ Users table
 -nick
 -name (null)
 -email
--password
+-password(hash)
 
 Images table
 -id
