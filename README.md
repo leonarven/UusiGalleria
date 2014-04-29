@@ -8,7 +8,7 @@ Expressjs, mysql, consolidate, swig
 
 Tarvitaanko muuta?
 
-password-hash = md5(salt1+pw+salt2)?
+password-hash = md5(salt1+pw+salt2)? HELL YEAH!
 
 Database struktuuri :
 
