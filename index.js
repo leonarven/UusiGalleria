@@ -1,5 +1,6 @@
 var express = require('express')
   , cons = require('consolidate')
+  , cfg = require('./config.js')
   , app = express();
 
 // assign the swig engine to .html files
@@ -41,6 +42,11 @@ app.get('/register', function(req, res){
   });
 });
 
-app.listen(3000);
-console.log('Express server listening on port 3000');
+try {
+  app.listen(cfg.port);
+  console.log('Express server listening on port ' + cfg.port);
+
+} catch(e) {
+  console.log("Exception", e);
+}
 
