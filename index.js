@@ -15,7 +15,9 @@ app.get('/', function(req, res){
     title: 'Alaston #uusikanava'
   });
 });
-
+app.get('/users', function(req, res){
+  res.render('users');
+});
 app.get('/images', function(req, res){
   res.render('images', {
     title: 'Kuvvee'

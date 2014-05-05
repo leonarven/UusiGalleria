@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>{{title}}</title>
+		<meta charset="utf-8">
+		<title>{% block title %}{{title}}{% endblock %}</title>
+		{% block head %}
+		<link rel="stylesheet" href="main.css">
+		{% endblock %}
 	</head>
 	<body>
 		<div id="wrapper">
 			<header>
-				<h1>{{title}}</h1>
-				<p>TERETULEMAST {{title}} sivustolle. PAINAES NAPPULAE:</p>
+				<h1>#Alastonkanava</h1>
 				<ul>
 					<li><a href="/users">kaeyttaettajat</a></li>
 					<li><a href="/images">kuvveee</a></li>
@@ -18,3 +21,10 @@
 				</ul>
 			</header>
 			<section id="content">
+				{% block content %}{% endblock %}
+			</section>
+			<footer>
+			</footer>
+		</div>
+	</body>
+</html>
