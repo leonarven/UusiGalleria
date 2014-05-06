@@ -7,3 +7,6 @@ exports.host = 'localhost';
 exports.user = 'jotain';
 exports.database = 'jotain';
 exports.passwd = 'jotain';
+
+/* Hashit, avaimet ja kakkaa */
+exports.sessionSecret = "4e025e86036a34d2d3b24e8a8dd26b76";

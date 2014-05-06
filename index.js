@@ -1,8 +1,10 @@
 var express = require('express')
   , cons = require('consolidate')
+  , passport = require('passport')
   , cfg = require('./config.js')
+  , mysql = require('mysql')
   , app = express()
-  , mysql = require('mysql');
+  , LocalStrategy = require('passport-local').Strategy;
 
 // assign the swig engine to .html files
 app.engine('html', cons.swig);
@@ -11,12 +13,20 @@ app.engine('html', cons.swig);
 app.set('view engine', 'html');
 app.set('views', __dirname + '/static');
 
+app.configure(
+  function() {
+    app.use(express.session({ secret: cfg.sessionSecret }));
+    app.use(passport.initialize());
+    app.use(passport.session());
+  }
+);
+
 // mysql connection
 var connection = mysql.createConnection({
-host : cfg.host,
-user : cfg.user,
-database : cfg.database,
-password : cfg.passwd
+  host     : cfg.host,
+  user     : cfg.user,
+  database : cfg.database,
+  password : cfg.passwd
 });
 
 connection.connect();
@@ -55,11 +65,6 @@ app.get('/register', function(req, res){
   });
 });
 
-try {
-  app.listen(cfg.port);
-  console.log('Express server listening on port ' + cfg.port);
-
-} catch(e) {
-  console.log("Exception", e);
-}
+app.listen(cfg.port);
+console.log('Express server listening on port ' + cfg.port);
 
