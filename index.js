@@ -1,7 +1,8 @@
 var express = require('express')
   , cons = require('consolidate')
   , cfg = require('./config.js')
-  , app = express();
+  , app = express()
+  , mysql = require('mysql');
 
 // assign the swig engine to .html files
 app.engine('html', cons.swig);
@@ -9,6 +10,16 @@ app.engine('html', cons.swig);
 // set .html as the default extension 
 app.set('view engine', 'html');
 app.set('views', __dirname + '/static');
+
+// mysql connection
+var connection = mysql.createConnection({
+host : cfg.host,
+user : cfg.user,
+database : cfg.database,
+password : cfg.passwd
+});
+
+connection.connect();
 
 app.get('/', function(req, res){
   res.render('index', {
