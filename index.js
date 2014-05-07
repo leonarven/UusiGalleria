@@ -10,9 +10,10 @@ app.engine('html', cons.swig);
 // set .html as the default extension 
 app.set('view engine', 'html');
 app.set('views', __dirname + '/static');
-app.use('/css', express.static(__dirname + '/static/css'));
-app.use('/fonts', express.static(__dirname + '/static/fonts'));
-app.use('/js', express.static(__dirname + '/static/js'));
+app.set('view cache', false);
+
+app.use('/', express.static(__dirname + '/static'));
+
 
 // mysql connection
 var connection = mysql.createConnection({
