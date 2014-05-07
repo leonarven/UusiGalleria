@@ -1,23 +1,34 @@
+{#
+	Muista muuttaa stylesheetit ja scriptit min-muotoon
+#}
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>{% block title %}{{title}}{% endblock %}</title>
+
 		{% block head %}
-		<link rel="stylesheet" href="main.css">
 		{% endblock %}
+		<link rel="stylesheet" href="/css/main.css">
+		<link rel="stylesheet" href="/css/bootstrap.css">
+		<link rel="stylesheet" href="/css/bootstrap-theme.css">
 	</head>
 	<body>
 		<div id="wrapper">
 			<header>
 				<h1>#Alastonkanava</h1>
 				<ul>
-					<li><a href="/users">kaeyttaettajat</a></li>
 					<li><a href="/images">kuvveee</a></li>
-					<li><a href="/login">kirjaudu</a></li>
+{% if loggedIn %}
+					<li><a href="/users">kaeyttaettajat</a></li>
 					<li><a href="/logout">kirjaudu ulos</a></li>
 					<li><a href="/addimg">lisaaeae kuvvei</a></li>
+{% else %}
+					<li><a href="/login">kirjaudu</a></li>
 					<li><a href="/register">rekisteroidy</a></li>
+{% endif %}
 				</ul>
 			</header>
 			<section id="content">
@@ -26,5 +37,7 @@
 			<footer>
 			</footer>
 		</div>
+
+		<script type="text/javascript" src="/js/bootstrap.js">
 	</body>
 </html>

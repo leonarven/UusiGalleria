@@ -1,10 +1,8 @@
 var express = require('express')
   , cons = require('consolidate')
-  , passport = require('passport')
   , cfg = require('./config.js')
   , mysql = require('mysql')
-  , app = express()
-  , LocalStrategy = require('passport-local').Strategy;
+  , app = express();
 
 // assign the swig engine to .html files
 app.engine('html', cons.swig);
@@ -12,57 +10,51 @@ app.engine('html', cons.swig);
 // set .html as the default extension 
 app.set('view engine', 'html');
 app.set('views', __dirname + '/static');
-
-app.configure(
-  function() {
-    app.use(express.session({ secret: cfg.sessionSecret }));
-    app.use(passport.initialize());
-    app.use(passport.session());
-  }
-);
+app.use('/css', express.static(__dirname + '/static/css'));
+app.use('/fonts', express.static(__dirname + '/static/fonts'));
+app.use('/js', express.static(__dirname + '/static/js'));
 
 // mysql connection
 var connection = mysql.createConnection({
-  host     : cfg.host,
-  user     : cfg.user,
-  database : cfg.database,
-  password : cfg.passwd
+  host     : cfg.mysql.host,
+  user     : cfg.mysql.user,
+  database : cfg.mysql.database,
+  password : cfg.mysql.passwd
 });
 
 connection.connect();
 
+
+renderPage = function(req, res, page, variables) {
+  if (typeof variables == "undefined")
+    variables = {};
+
+  if (typeof req.query.logged != "undefined")
+    variables.loggedIn = true;
+
+  res.render(page, variables);
+}
+
 app.get('/', function(req, res){
-  res.render('index', {
-    title: 'Alaston #uusikanava'
-  });
+  renderPage(req, res, 'index');
 });
 app.get('/users', function(req, res){
-  res.render('users');
+  renderPage(req, res, 'users');
 });
 app.get('/images', function(req, res){
-  res.render('images', {
-    title: 'Kuvvee'
-  });
+  renderPage(req, res, 'images');
 });
 app.get('/login', function(req, res){
-  res.render('login', {
-    title: 'kirjaudu'
-  });
+  renderPage(req, res, 'login');
 });
 app.get('/logout', function(req, res){
-  res.render('logout', {
-    title: 'Kirjaudu ulos'
-  });
+  renderPage(req, res, 'logout');
 });
 app.get('/addimg', function(req, res){
-  res.render('addimg', {
-    title: 'Lisää kuva'
-  });
+  renderPage(req, res, 'addimg');
 });
 app.get('/register', function(req, res){
-  res.render('register', {
-    title: 'Rekisteröidy'
-  });
+  renderPage(req, res, 'register');
 });
 
 app.listen(cfg.port);
