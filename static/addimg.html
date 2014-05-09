@@ -1,7 +1,71 @@
+
+
 {% extends 'layout.html' %}
 
-{% block title %}Lisää kuvia{% endblock %}
+
+{% block title %}Lissee kuvvii{% endblock %}
+
 
 {% block content %}
-<h1>Täälollä lisätään kuvia</h1>
+<h1>Lisää kuvvee</h1>
+{% if loggedIn %}
+<form action="action/addimg" method="post">
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="input-group">
+                <input type="text" class="form-control" name="name" placeholder="Kuvan nimi">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="input-group">
+                <input type="text" class="form-control" name="desc" placeholder="Lyhyt kuvaus">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="input-group">
+                <input type="file" id="image">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+            <input type="submit" type="button"  class="col-lg-6 btn btn-default" value="Kirjaudu">
+        </div>
+    </div>
+</form>
+{% else %}
+<form action="action/addimg" method="post">
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="input-group">
+                <input type="text" class="form-control" name="name" placeholder="Kuvan nimi">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="input-group">
+                <input type="text" class="form-control" name="desc" placeholder="Lyhyt kuvaus">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="input-group">
+                <input type="file" id="image">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+            <input type="submit" type="button"  class="col-lg-6 btn btn-default" value="Kirjaudu">
+        </div>
+    </div>
+</form>
+{% endif %}
+
 {% endblock %}
