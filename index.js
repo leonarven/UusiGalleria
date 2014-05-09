@@ -37,7 +37,7 @@ renderPage = function(req, res, page, variables) {
 };
 
 app.get('/', function(req, res){
-  renderPage(req, res, 'index');
+  renderPage(req, res, 'etusivu');
 });
 app.get('/users', function(req, res){
   renderPage(req, res, 'users');
