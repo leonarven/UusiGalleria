@@ -4,4 +4,46 @@
 
 {% block content %}
 <h1>Rekisteröidy!</h1>
+<form action="action/register" method="post">
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="input-group">
+                <input type="text" class="form-control" name="nick" placeholder="nick">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="input-group">
+                <input type="text" class="form-control" name="name" placeholder="nimi">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="input-group">
+                <input type="text" class="form-control" name="email" placeholder="email">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="input-group">
+                <input type="text" class="form-control" name="desc" placeholder="Kuvaus itsestä">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="input-group">
+                <input type="text" class="form-control" name="desc" placeholder="Lyhyt kuvaus">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+            <input type="submit" type="button"  class="col-lg-8 btn btn-default" value="Rekisteröidy">
+        </div>
+    </div>
+</form>
 {% endblock %}
