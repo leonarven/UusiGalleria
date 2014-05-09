@@ -4,6 +4,14 @@ var express = require('express')
   , mysql = require('mysql')
   , app = express();
 
+configVersion = "0.1";
+
+if (cfg.configVersion !== configVersion) {
+  console.log("Ivalid Config Version.");
+  console.log("For newest config.js see https://github.com/leonarven/UusiGalleria/blob/master/config-example.js");
+  process.exit(1);
+} 
+
 // assign the swig engine to .html files
 app.engine('html', cons.swig);
 

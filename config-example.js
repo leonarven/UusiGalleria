@@ -1,3 +1,4 @@
+exports.configVersion = "0.1";
 
 /* Portti jota kuunnellaan */
 exports.port = 3000;
@@ -11,4 +12,4 @@ exports.mysql = {
 };
 
 /* Hashit, avaimet ja kakkaa */
-exports.sessionSecret = "4e025e86036a34d2d3b24e8a8dd26b76";
+exports.sessionSecret = "Foobar";
