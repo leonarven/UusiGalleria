@@ -16,14 +16,14 @@ app.use('/', express.static(__dirname + '/static'));
 
 
 // mysql connection
-var connection = mysql.createConnection({
+/*var connection = mysql.createConnection({
   host     : cfg.mysql.host,
   user     : cfg.mysql.user,
   database : cfg.mysql.database,
   password : cfg.mysql.passwd
 });
 
-connection.connect();
+connection.connect();*/
 
 
 renderPage = function(req, res, page, variables) {

@@ -14,6 +14,7 @@
 		<link rel="stylesheet" href="/css/main.css">
 		<link rel="stylesheet" href="/css/bootstrap.css">
 		<link rel="stylesheet" href="/css/bootstrap-theme.css">
+		<link rel="stylesheet" href="/css/jquery-ui-1.10.4.css">
 	</head>
 	<body>
 		<div id="wrapper">
@@ -31,7 +32,7 @@
 								<li><a href="/logout">kirjaudu ulos</a></li>
 								<li><a href="/addimg">lisaaeae kuvvei</a></li>
 {% else %}
-								<li><a href="/login">kirjaudu</a></li>
+								<li><a href="#" onclick="openPopup('#loginPopup')">kirjaudu</a></li>
 								<li><a href="/register">rekisteroidy</a></li>
 {% endif %}
 							</ul>
@@ -46,6 +47,40 @@
 			</footer>
 		</div>
 
-		<script type="text/javascript" src="/js/bootstrap.js">
+{% if loggedIn %}
+{% else %}
+			<div id="loginPopup" title="Kirjaudu sisään" style="display:none;">
+				<h1>Kirjaudu sisään</h1>
+				<form action="action/login" method="post">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="input-group">
+								<span class="input-group-addon">@</span>
+								<input type="text" class="form-control" name="username" placeholder="Käyttäjätunnus">
+							</div>
+						</div>
+						<div class="col-lg-12">
+							<div class="col-lg-12 input-group">
+								<input type="password" class="form-control" name="password" placeholder="Salasana">
+							</div>
+						</div>
+						<div>
+							<input type="submit" type="button"  class="col-lg-6 btn btn-default" value="Kirjaudu">
+						</div>
+					</div>
+				</form>
+			</div>
+{% endif %}
+
+		<!-- Muista vaihtaa min-paketteihin tuotantoversiossa -->
+		<script type="text/javascript" src="/js/main.js"></script>
+		<script type="text/javascript" src="/js/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="/js/jquery-ui-1.10.4.js"></script>
+		<script type="text/javascript" src="/js/bootstrap.js"></script>
+		<script type="text/javascript">
+			$(function(){
+
+			});
+		</script>
 	</body>
 </html>
