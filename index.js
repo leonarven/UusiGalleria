@@ -34,7 +34,7 @@ renderPage = function(req, res, page, variables) {
     variables.loggedIn = true;
 
   res.render(page, variables);
-}
+};
 
 app.get('/', function(req, res){
   renderPage(req, res, 'index');
