@@ -24,14 +24,14 @@ app.use('/', express.static(__dirname + '/static'));
 
 
 // mysql connection
-/*var connection = mysql.createConnection({
+var connection = mysql.createConnection({
   host     : cfg.mysql.host,
   user     : cfg.mysql.user,
   database : cfg.mysql.database,
   password : cfg.mysql.passwd
 });
 
-connection.connect();*/
+connection.connect();
 
 
 renderPage = function(req, res, page, variables) {
@@ -64,6 +64,16 @@ app.get('/addimg', function(req, res){
 });
 app.get('/register', function(req, res){
   renderPage(req, res, 'register');
+});
+
+
+app.post('/action/register', function(req, res){
+  console.log("POSTin /action/register");
+  console.log(req.body);
+});
+app.post('/action/login', function(req, res){
+  console.log("POSTin /action/login");
+  console.log(req.body);
 });
 
 app.listen(cfg.port);
