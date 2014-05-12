@@ -1,9 +1,10 @@
-var express = require('express')
+var express  = require('express')
 //  , bodyParser = require('body-parser')
-  , cons = require('consolidate')
-  , cfg = require('./config.js')
-  , mysql = require('mysql')
-  , app = express();
+  , cons     = require('consolidate')
+  , mysql    = require('mysql')
+  , cfg      = require('./config.js')
+  , userauth = require('./userauth.js')
+  , app      = express();
 
 configVersion = "0.2";
 
@@ -27,7 +28,9 @@ app.use('/', express.static(__dirname + '/static'));
 // mysql connection
 var connection = mysql.createConnection(cfg.mysql);
 
-connection.connect();
+//connection.connect();
+
+userauth.initUserAuth(connection, cfg);
 
 
 renderPage = function(req, res, page, variables) {
@@ -64,11 +67,19 @@ app.get('/register', function(req, res){
 
 /* TODO: get postiksi kunhan korjauskeino löytyy */
 app.get('/action/register', function(req, res){
-  console.log("POSTin /action/register");
   console.log(req.query);
 });
 app.get('/action/login', function(req, res){
-  console.log("POSTin /action/login");
+
+  passhash = userauth.passhash(req.query.password);
+  username = req.query.username;
+
+  if(userauth.login(username, passhash)) {
+    renderPage(req, res, 'etusivu');
+  } else {
+    renderPage(req, res, 'login', { 'invalidLogin' : true, 'username' : username });
+  }
+
   console.log(req.query);
 });
 
