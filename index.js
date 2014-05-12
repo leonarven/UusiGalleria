@@ -1,10 +1,11 @@
 var express = require('express')
+//  , bodyParser = require('body-parser')
   , cons = require('consolidate')
   , cfg = require('./config.js')
   , mysql = require('mysql')
   , app = express();
 
-configVersion = "0.1";
+configVersion = "0.2";
 
 if (cfg.configVersion !== configVersion) {
   console.log("Ivalid Config Version.");
@@ -21,15 +22,10 @@ app.set('views', __dirname + '/static');
 app.set('view cache', false);
 
 app.use('/', express.static(__dirname + '/static'));
-
+//app.use(bodyParser());
 
 // mysql connection
-var connection = mysql.createConnection({
-  host     : cfg.mysql.host,
-  user     : cfg.mysql.user,
-  database : cfg.mysql.database,
-  password : cfg.mysql.passwd
-});
+var connection = mysql.createConnection(cfg.mysql);
 
 connection.connect();
 
@@ -66,14 +62,14 @@ app.get('/register', function(req, res){
   renderPage(req, res, 'register');
 });
 
-
-app.post('/action/register', function(req, res){
+/* TODO: get postiksi kunhan korjauskeino löytyy */
+app.get('/action/register', function(req, res){
   console.log("POSTin /action/register");
-  console.log(req.body);
+  console.log(req.query);
 });
-app.post('/action/login', function(req, res){
+app.get('/action/login', function(req, res){
   console.log("POSTin /action/login");
-  console.log(req.body);
+  console.log(req.query);
 });
 
 app.listen(cfg.port);
